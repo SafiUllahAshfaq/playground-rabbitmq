@@ -17,6 +17,8 @@ async function connect() {
 		channel.consume('jobs', (msg) => {
 			const input = JSON.parse(msg.content.toString(), undefined, 2);
 
+			if (parseInt(input.number) === 2) channel.ack(msg);
+
 			console.log(input);
 		});
 	} catch (error) {
